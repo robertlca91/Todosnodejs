@@ -37,4 +37,5 @@ const Todos = db.define("todos", {
   timestamps:false,
 }
 )
+
 module.exports = Todos
