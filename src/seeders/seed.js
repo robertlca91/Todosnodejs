@@ -2,6 +2,8 @@
 const db= require('../utils/database')
 const Users= require('../models/users.model')
 const Todos = require('../models/todos.models')
+const Categories = require('../models/todos-categories.models')
+const TodosCategories=require('../models/todos-categories.models')
 
 const users = [
 {
@@ -17,18 +19,45 @@ usermane:'lucero' , email:'luchero@gmail.com' , password:'456789'
 
 const todos =[
 {
-title:'task1' , description:'descriptions for one', userId:1
+title:'estudiar node' , description:'descriptions for one', userId:1
 },
 {
-  title:'task2' , description:'descriptions for two', userId:1
+  title:'pasear al firulais' , description:'descriptions for two', userId:1
 },
 {
-title:'task3 imposible' , description:'descriptions for three', userId:2
+title:'lavar platos imposible' , description:'descriptions for three', userId:2
 },
 {
-  title:'task4' , description:'descriptions for', userId:3
+  title:'chekeo mensual' , description:'descriptions for', userId:3
 },
 ];
+
+const categories = [
+  {name: 'personal'},
+  {name: 'educacion'},
+  {name: 'salud'},
+  {name: 'trabajo'},
+  {name: 'hogar'},
+  {name: 'cocina'},
+  {name: 'deporte'},
+  {name: 'ocio'},
+  {name: 'financiero'},
+  {name: 'entretenimiento'},
+  ]; 
+
+  const todosCategories = [
+    { categoryId: 1, todoId: 1 },
+    { categoryId: 2, todoId: 1 },
+    { categoryId: 4, todoId: 1 },
+    { categoryId: 1, todoId: 2 },
+    { categoryId: 7, todoId: 2 },
+    { categoryId: 10, todoId: 2 },
+    { categoryId: 3, todoId: 2 },
+    { categoryId: 5, todoId: 3 },
+    { categoryId: 6, todoId: 3 },
+    { categoryId: 1, todoId: 4 },
+    { categoryId: 3, todoId: 4 },
+    ]; 
 
 // const categories = [];
 
@@ -39,12 +68,18 @@ title:'task3 imposible' , description:'descriptions for three', userId:2
 //destroy
 
 
-db.sync({force:false})
+db.sync({force:true})
 .then(()=>{
 console.log('iniciando con el sembriadio malicioso')
 users.forEach((user)=>Users.create(user));
 setTimeout(()=>{
 todos.forEach((todo)=>Todos.create(todo))
 },100)
+setTimeout(()=>{
+categories.forEach((category)=>Categories.create(category))
+},250);
+setTimeout(()=>{
+todosCategories.forEach((tc)=>TodosCategories.create(tc))
+},400);
 })
 
