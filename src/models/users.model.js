@@ -8,9 +8,8 @@ const Users = db.define('users', {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     allowNull: false,
-    unique: true,
   },
-  usermane: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false,
     unique: true,
@@ -28,6 +27,5 @@ const Users = db.define('users', {
     allowNull: false,
   },
 })
-
 
 module.exports = Users

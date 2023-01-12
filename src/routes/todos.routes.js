@@ -2,6 +2,7 @@ const { Router } = require('express')
 const {
   getAllTodos,
   getTodosById,
+  getTodosWithCategories,
   createTodos,
   updateTodos,
   deleteTodos,
@@ -12,7 +13,6 @@ router.get('/todos', getAllTodos)
 router.get('/todos/:id', getTodosById)
 /// voya traer los todos con categories
 router.get('/todos/:id/categories', getTodosWithCategories)
-//asdasdasd
 router.post('/todos', createTodos)
 router.put('/todos/:id', updateTodos)
 router.delete('/todos/:id', deleteTodos)

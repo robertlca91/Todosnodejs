@@ -22,8 +22,8 @@ class UserServices {
     try {
       const result = await Users.findOne({
         where: { id },
-        // attributes: ['usermane'],
-        include: { model: Todos, as: 'task' },
+        attributes: { exclude: ['password'] },
+        include: { model: Todos, attributes: ['title'], as: 'task' },
       })
       return result
     } catch (error) {
