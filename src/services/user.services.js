@@ -1,3 +1,4 @@
+const Categories = require('../models/categories.models')
 const Todos = require('../models/todos.models')
 const Users = require('../models/users.model')
 
@@ -30,6 +31,19 @@ class UserServices {
       throw error
     }
   }
+  static async getUserWithCategories(id) {
+    try {
+      const result = await Users.findOne({
+        where: { id },
+        attributes: { exclude: ['password'] },
+        include: { model: Categories, attribures: ['name'], as: 'categories' },
+      })
+      return result
+    } catch (error) {
+      throw error
+    }
+  }
+
   static async create(user) {
     try {
       const result = await Users.create(user)

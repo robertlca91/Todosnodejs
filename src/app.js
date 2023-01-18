@@ -7,18 +7,25 @@ const Users = require('./models/users.model')
 const Todos = require('./models/todos.models')
 const userRoutes = require('./routes/users.routes')
 const todosRoutes = require('./routes/todos.routes')
+const authRoutes = require('./routes/auth.routes')
+const cors = require('cors')
+require('dotenv').config()
 //crear una instancia de express
 
 const app = express()
-app.use(express.json())
 
-const PORT = 8000
+console.log(process.env)
+app.use(express.json())
+app.use(cors())
+
+const PORT = process.env.PORT
 
 db.authenticate()
   .then(() => console.log('autenticacion exitosa'))
   .catch((error) => console.log(error))
 
 initModels()
+
 db.sync({ force: false })
   .then(() => console.log('data base sincronizada'))
   .catch((error) => console.log(error))
@@ -29,6 +36,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1', userRoutes)
 app.use('/api/v1', todosRoutes)
+app.use('/api/v1', authRoutes)
 
 // definir las rutas de nuestras endpoints(de ahora en adelante ep)
 // para todas las consultas de usuarios

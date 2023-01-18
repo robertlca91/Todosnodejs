@@ -3,10 +3,12 @@ const {
   getAllUsers,
   getUserById,
   getUserWithTasks,
+  getUserWithCategories,
   createUser,
   updateUser,
   deleteUser,
 } = require('../controllers/users.controller')
+const authMiddleware = require('../middlwares/auth.middleware')
 const router = Router() // enrrutador
 
 //app. get
@@ -14,13 +16,13 @@ const router = Router() // enrrutador
 //app.put
 //app.delete
 
-router.get('/users', getAllUsers)
-router.get('/users/:id', getUserById)
+router.get('/users', authMiddleware, getAllUsers)
+router.get('/users/:id', authMiddleware, getUserById)
 //obtener a un usuario con sus tareas
-router.get('/users/:id/tasks', getUserWithTasks)
-
+router.get('/users/:id/tasks', authMiddleware, getUserWithTasks)
+router.get('/users/:id/categories', authMiddleware, getUserWithCategories) // traer median el users las categorias //
 router.post('/users', createUser)
-router.put('/users/:id', updateUser)
-router.delete('/users/:id', deleteUser)
+router.put('/users/:id', authMiddleware, updateUser)
+router.delete('/users/:id', authMiddleware, deleteUser)
 
 module.exports = router

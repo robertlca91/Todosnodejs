@@ -1,7 +1,7 @@
 const db = require('../utils/database')
 const Users = require('../models/users.model')
 const Todos = require('../models/todos.models')
-const Categories = require('../models/todos-categories.models')
+const Categories = require('../models/categories.models')
 const TodosCategories = require('../models/todos-categories.models')
 
 const users = [
